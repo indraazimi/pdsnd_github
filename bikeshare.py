@@ -219,6 +219,24 @@ def user_stats(df):
     show_stats_footer(time.time() - start_time)
 
 
+def revert_data(df):
+    """
+    Reverts DataFrame to original data by deleting previously added columns.
+
+    Args:
+        (DataFrame) df - Pandas DataFrame containing city data filtered by month and day
+    """
+    # These columns added when data is loaded from CSV
+    df.pop('month')
+    df.pop('day_of_week')
+
+    # This column added when time stats is calculated
+    df.pop('hour')
+
+    # This column added when station stats is calculated
+    df.pop('trip')
+
+
 def show_raw_data(df):
     """
     Shows raw data, 5 rows at a time, if user wants it.
@@ -227,10 +245,7 @@ def show_raw_data(df):
         (DataFrame) df - Pandas DataFrame containing city data filtered by month and day
     """
     # Reverts DataFrame to original data by deleting previously added columns
-    df.pop('month')
-    df.pop('day_of_week')
-    df.pop('hour')
-    df.pop('trip')
+    revert_data(df)
 
     # Asks user if he/she wants to see raw data
     index = 0
