@@ -101,6 +101,16 @@ def load_data(city, month, day):
     return df
 
 
+def show_timelapse(timelapse):
+    """
+    Displays how long a statistic calculation took place.
+
+    Args:
+        (float) timelapse - how long a statistic calculation took place
+    """
+    print("\nThis took %.6f seconds." % timelapse)
+
+
 def time_stats(df, month, day):
     """
     Displays statistics on the most frequent times of travel.
@@ -129,7 +139,7 @@ def time_stats(df, month, day):
     popular_hour = df['hour'].mode()[0]
     print('Most popular start hour:', popular_hour)
 
-    print("\nThis took %.6f seconds." % (time.time() - start_time))
+    show_timelapse(time.time() - start_time)
     print('-'*40)
 
 
@@ -156,7 +166,7 @@ def station_stats(df):
     popular_trip = df['trip'].mode()[0]
     print('Most popular trip:', popular_trip)
 
-    print("\nThis took %.6f seconds." % (time.time() - start_time))
+    show_timelapse(time.time() - start_time)
     print('-'*40)
 
 
@@ -178,7 +188,7 @@ def trip_duration_stats(df):
     average_time = df['Trip Duration'].mean()
     print('Average travel time: {:.2f} seconds/trip'.format(average_time))
 
-    print("\nThis took %.6f seconds." % (time.time() - start_time))
+    show_timelapse(time.time() - start_time)
     print('-'*40)
 
 
@@ -208,7 +218,7 @@ def user_stats(df):
         print('Most recent birth year:', int(df['Birth Year'].max()))
         print('Most common birth year:', int(df['Birth Year'].mode()[0]))
 
-    print("\nThis took %.6f seconds." % (time.time() - start_time))
+    show_timelapse(time.time() - start_time)
     print('-'*40)
 
 
